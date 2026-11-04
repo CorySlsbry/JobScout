@@ -1,0 +1,237 @@
+/* JobScout floating overlay on Upwork pages.
+   All selectors scoped inside #jobscout-root so we don't fight Upwork's CSS. */
+
+#jobscout-root,
+#jobscout-root * {
+  all: revert;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#jobscout-root {
+  position: fixed;
+  z-index: 2147483647;
+  bottom: 18px;
+  right: 18px;
+  pointer-events: none;
+}
+#jobscout-root > * { pointer-events: auto; }
+
+#jobscout-fab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+  box-shadow: 0 8px 28px rgba(124, 58, 237, 0.45), 0 2px 6px rgba(0,0,0,0.25);
+}
+#jobscout-fab:hover { transform: translateY(-1px); }
+.jobscout-star { color: #fde68a; }
+
+#jobscout-panel {
+  position: absolute;
+  bottom: 56px;
+  right: 0;
+  width: 360px;
+  max-height: 78vh;
+  overflow-y: auto;
+  background: #0b1020;
+  color: #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+}
+#jobscout-panel header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 14px;
+}
+#jobscout-panel header strong { flex: 1; }
+.jobscout-close {
+  background: transparent;
+  color: #9ca3af;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+}
+.jobscout-close:hover { color: #fff; }
+
+.jobscout-body { padding: 14px; font-size: 13px; line-height: 1.5; }
+.jobscout-body p { margin: 0 0 10px 0; }
+.jobscout-hint { color: #9ca3af; }
+.jobscout-hint kbd {
+  display: inline-block; padding: 1px 6px; border-radius: 4px;
+  background: #1f2937; border: 1px solid #374151; font-size: 11px;
+}
+
+.jobscout-action {
+  width: 100%;
+  display: inline-flex; justify-content: center; align-items: center;
+  padding: 9px 12px;
+  border-radius: 10px; border: none; cursor: pointer;
+  font-size: 13px; font-weight: 600; color: #fff;
+  background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+}
+.jobscout-action:hover { filter: brightness(1.1); }
+.jobscout-action-secondary {
+  padding: 9px 12px; border-radius: 10px; cursor: pointer;
+  font-size: 13px; font-weight: 600; color: #e5e7eb;
+  background: #1f2937; border: 1px solid #374151;
+}
+.jobscout-row { display: flex; gap: 8px; margin-top: 10px; }
+.jobscout-row .jobscout-action { flex: 1; }
+
+.jobscout-busy { display: flex; align-items: center; gap: 8px; color: #9ca3af; }
+.jobscout-spin {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2px solid #4b5563; border-top-color: #fff;
+  animation: jobscout-spin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes jobscout-spin { to { transform: rotate(360deg); } }
+
+.jobscout-verdict { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.jobscout-good { color: #34d399; }
+.jobscout-bad  { color: #f87171; }
+.jobscout-meta { color: #9ca3af; font-size: 12px; }
+.jobscout-reasons { padding-left: 18px; margin: 8px 0; }
+.jobscout-reasons li { margin: 3px 0; }
+.jobscout-violations {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 8px;
+  padding: 8px 10px; margin: 10px 0;
+  color: #fecaca;
+}
+.jobscout-violations ul { padding-left: 18px; margin: 6px 0 0 0; }
+.jobscout-err {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #fecaca;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+#jobscout-bid-text {
+  width: 100%; min-height: 180px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #374151;
+  background: #0f172a; color: #e5e7eb;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px; line-height: 1.5;
+  resize: vertical;
+}
+
+/* Dimension grid — per-dimension score breakdown on a detail-page score */
+
+.jobscout-dims {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0 12px 0;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.025);
+}
+.jobscout-dim {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.jobscout-dim-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 12px;
+}
+.jobscout-dim-name { color: #d1d5db; font-weight: 600; }
+.jobscout-dim-score {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.jobscout-dim-good { color: #34d399; }
+.jobscout-dim-warn { color: #fbbf24; }
+.jobscout-dim-bad  { color: #f87171; }
+.jobscout-dim-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.jobscout-dim-fill {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.jobscout-dim-fill.jobscout-dim-good { background: linear-gradient(90deg, #34d399, #10b981); }
+.jobscout-dim-fill.jobscout-dim-warn { background: linear-gradient(90deg, #fbbf24, #f59e0b); }
+.jobscout-dim-fill.jobscout-dim-bad  { background: linear-gradient(90deg, #f87171, #ef4444); }
+.jobscout-dim-note {
+  font-size: 11px;
+  color: #9ca3af;
+  line-height: 1.4;
+}
+
+/* Inline badges on search-result cards (list page) ─────────────────────── */
+
+.jobscout-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.4;
+  color: #fff !important;
+  pointer-events: auto;
+  cursor: help;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.jobscout-badge .jobscout-star { color: #fde68a !important; }
+.jobscout-badge-pending { background: linear-gradient(135deg, #6b7280, #4b5563); }
+.jobscout-badge-apply   { background: linear-gradient(135deg, #10b981, #059669); }
+.jobscout-badge-skip    { background: linear-gradient(135deg, #6b7280, #4b5563); opacity: 0.7; }
+.jobscout-badge-err     { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+
+.jobscout-toast {
+  position: fixed; bottom: 88px; right: 18px;
+  z-index: 2147483647;
+  padding: 8px 14px;
+  background: #111827; color: #fff;
+  border-radius: 999px;
+  font-size: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+  animation: jobscout-fade 1.8s ease-out;
+}
+@keyframes jobscout-fade {
+  0% { opacity: 0; transform: translateY(8px); }
+  10%, 80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-4px); }
+}

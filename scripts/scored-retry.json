@@ -1,0 +1,170 @@
+[
+  {
+    "title": "GoHighLevel & AI Automation Specialist (Australia hours)",
+    "url": "https://www.upwork.com/jobs/GoHighLevel-amp-Automation-Specialist_~REDACTED_ID/",
+    "text": "GoHighLevel & AI Automation Specialist. Verified, payment verified, 4.9 rating, $20K+ spent. Australia. Fixed price. Intermediate. Est. budget: $1,000.00. We're looking for a senior-level GoHighLevel specialist who can own our CRM, automations, and AI systems end-to-end - not someone who simply executes instructions. We need independent thinking and ownership. Non-Negotiable Requirements Only apply if you have ALL of these: 1. 2+ years hands-on GHL experience in live operational businesses. You have done full builds (automations, funnels, pipelines, reporting, membership areas, GoKollab) for actual businesses. 2. Must be fluent in English, have a reliable internet connection, and be available during hours that overlap with Australian business hours (AEST/AEDT). 3. Proven AI bot builds: conversational flows, decision logic, escalation rules. 4. You troubleshoot fast and understand conditional logic, triggers, and integrations.",
+    "verdict": "apply",
+    "score": 78,
+    "reasons": [
+      "Strong GoHighLevel and AI automation foundation: resume documents 1 year directing GHL CRM pipelines, workflows, and AI-assisted app builds using Claude/ChatGPT, directly matching the core tech stack.",
+      "Client quality and budget align well: verified payment, 4.9 rating, $20K+ spent, and $1,000 fixed budget exceeds freelancer's minimum; low payment risk.",
+      "Experience gap on non-negotiable: JD explicitly requires '2+ years hands-on GHL in live operational businesses with full builds'; resume shows only ~1 year platform experience, falling 1+ year short of stated requirement.",
+      "Australian timezone constraint: freelancer is US-based (Mountain Time); JD requires 'overlap with Australian business hours (AEST/AEDT)'—feasible but requires early morning/evening flexibility not addressed in resume."
+    ],
+    "dimensions": [
+      {
+        "name": "Role fit",
+        "score": 82,
+        "note": "Resume shows 1 year hands-on GoHighLevel CRM building, pipeline design, and automation workflows; however, the JD requires 2+ years in live operational businesses with full builds. Resume demonstrates GHL capability but falls slightly short on depth/duration claim; AI bot builds not explicitly detailed."
+      },
+      {
+        "name": "Comp",
+        "score": 90,
+        "note": "Fixed budget $1,000 exceeds min_fixed_budget floor of $500; no hourly rate specified, so fixed-price structure aligns with filter."
+      },
+      {
+        "name": "Engagement",
+        "score": 75,
+        "note": "Fixed-price project (not hourly) fits filter; no time-tracker or fixed-schedule mention in JD; however, JD requires overlap with Australian business hours (AEST/AEDT), which may constrain freelancer in US Mountain Time."
+      },
+      {
+        "name": "Client",
+        "score": 85,
+        "note": "Client is payment-verified, 4.9 rating, $20K+ spent—strong track record and low payment risk."
+      },
+      {
+        "name": "Competition",
+        "score": 50,
+        "note": "Proposal count not visible from JD; cannot assess against max_proposals_already threshold of 30."
+      },
+      {
+        "name": "Growth alignment",
+        "score": 80,
+        "note": "Role directly advances stated AI automation expertise and GoHighLevel specialization; aligns with freelancer's 1-year platform experience trajectory and focus on CRM/automation ownership."
+      },
+      {
+        "name": "Red flags",
+        "score": 78,
+        "note": "No excluded keywords detected; include_keywords matched (gohighlevel, ai, automation, integration); however, JD emphasizes '2+ years hands-on GHL in live operational businesses' and 'proven AI bot builds'—resume shows 1 year platform experience, not the 2+ operational years explicitly required."
+      }
+    ],
+    "filter_violations": [],
+    "is_hourly": false,
+    "hourly_low": null,
+    "hourly_high": null,
+    "fixed_budget": 1000,
+    "proposals_already": null
+  },
+  {
+    "title": "Technical Product Partner (Part-Time) | AI Tools & Agency SaaS Builds",
+    "url": "https://www.upwork.com/jobs/Technical-Product-Partner-Part-Time-Tools-Agency-SaaS-Builds_~022054723762187621644/",
+    "text": "Technical Product Partner (Part-Time) | AI Tools & Agency SaaS Builds. Verified, payment verified, 4.9 rating, $200K+ spent. United States. Fixed price. Expert. Est. budget: $1,500.00. About the Role: I run a small performance marketing company in Orange County, CA specializing in paid media and lead generation. Over the past year, I've been building a suite of internal and client-facing SaaS tools alongside my core agency work, and I need a partner to help me build faster. This is not a task-based freelance gig. I'm looking for someone who genuinely gets what I'm building, can absorb the vision quickly, and keeps things moving when I'm not around. Technical ability matters, but product thinking and execution speed matter more. A growing stack of marketing-adjacent SaaS products and internal tools, including: a little landing page platform to test AI landing pages (most urgent), an AI-powered ad audit and creative analysis tool, a multi-tenant client portal.",
+    "verdict": "apply",
+    "score": 72,
+    "reasons": [
+      "Resume demonstrates 1 year of hands-on AI-assisted SaaS development with Firebase, Cloud Run, Supabase, landing pages, CRM workflows, and n8n/Zapier automation—core tech stack for this role's AI tools and internal SaaS builds.",
+      "Client profile is strong (verified, 4.9★, $200K+ spend); fixed $1,500 budget exceeds minimum and part-time, flexible engagement avoids time-tracker and fixed-schedule constraints.",
+      "Product thinking gap: resume shows execution skill but lacks explicit product strategy or shipping velocity narrative; 'partner' framing expects judgment and initiative beyond typical freelance task execution.",
+      "Missing React/Next.js framework experience is a stretch, but full-stack cloud deployment (Vercel, Cloud Run) and HTML landing page builds suggest frontend capability; runway for ramp-up on modern JS stack is reasonable in a part-time partner model."
+    ],
+    "dimensions": [
+      {
+        "name": "Role fit",
+        "score": 75,
+        "note": "Resume shows 1yr AI-assisted SaaS dev (Firebase, Cloud Run, Supabase, n8n, Zapier, GHL CRM), landing page/dashboard builds, and workflow automation—directly relevant to landing page platform, AI audit tool, and client portal; lacks frontend framework depth (React/Next.js) but has full-stack cloud deployment experience."
+      },
+      {
+        "name": "Comp",
+        "score": 80,
+        "note": "$1,500 fixed budget exceeds $500 floor; part-time engagement with flexible scope aligns with freelancer's profile."
+      },
+      {
+        "name": "Engagement",
+        "score": 85,
+        "note": "Fixed-price, part-time, no clock-in or mandatory hours stated; described as 'partner' role (not task-gated), compatible with no_fixed_schedule and no_time_tracker filters."
+      },
+      {
+        "name": "Client",
+        "score": 88,
+        "note": "Verified payment, 4.9 rating, $200K+ spent indicates reliable, serious client with track record of investing in quality work."
+      },
+      {
+        "name": "Competition",
+        "score": 50,
+        "note": "Proposals count not visible in JD; unable to assess against max_proposals_already=30 threshold."
+      },
+      {
+        "name": "Growth alignment",
+        "score": 78,
+        "note": "Role directly advances stated growth in AI-assisted SaaS and automation (n8n, Zapier, Firebase/Cloud Run, CRM integration); exposure to product thinking and execution speed in marketing-tech SaaS builds on existing 1yr applied AI experience."
+      },
+      {
+        "name": "Red flags",
+        "score": 82,
+        "note": "No on-site, time-tracker, or fixed-schedule red flags; automotive background is unrelated but resume clearly pivots to AI/SaaS with relevant certifications and hands-on cloud/automation work; 'part-time partner' language is atypical but does not trigger no_long_term (not described as 4+ month or indefinite commitment)."
+      }
+    ],
+    "filter_violations": [],
+    "is_hourly": false,
+    "hourly_low": null,
+    "hourly_high": null,
+    "fixed_budget": 1500,
+    "proposals_already": null
+  },
+  {
+    "title": "Full Stack AI Voice Agent | Enterprise Product | 6 Weeks",
+    "url": "https://www.upwork.com/jobs/Full-Stack-Engineer-Voice-Assistant-for-Enterprise-Product-Weeks_~REDACTED_ID/",
+    "text": "Full Stack AI Engineer | Voice AI Assistant for an Enterprise Product | 6 Weeks. Verified, payment verified, 0 rating, $0 spent. Canada. Fixed price. Intermediate. Est. budget: $1,800.00. Timeline: 6 weeks, Team: 1 Engineer + 1 PM, Start: ASAP, Remote. THE PROJECT: Build a voice AI assistant for enterprise. Users ask voice questions about projects and market conditions. AI searches knowledge base and returns answers with documents, recommendations, presentations, and emails. Ship production-ready. Real users by Week 6. THE DELIVERY: Weeks 1-2: Voice foundation (Real-time speech-to-text and response with Deepgram, ElevenLabs, LLM integration with Claude API via LangChain, end-to-end voice chat working). Weeks 3-4: Core intelligence (Semantic search over proprietary data using Pinecone, document retrieval and ranking, presentation and email generation, admin dashboard). Weeks 5-6: Production readiness (security, scale, deployment).",
+    "verdict": "apply",
+    "score": 72,
+    "reasons": [
+      "Resume demonstrates LLM + Claude + Firebase + Cloud Run + n8n experience, direct match to include_keywords; AI platform year aligns with growth goals.",
+      "Fixed 6-week sprint, remote, no surveillance/schedule constraints fits all hard filters cleanly.",
+      "Payment-verified new client and $1,800 budget clear; main risk is production voice AI complexity vs. 1yr platform background—stretch but feasible for self-directed learner.",
+      "Role fit score 65 reflects missing Pinecone/semantic search, Deepgram/voice stack production shipping; not disqualifying, but expect learning curve on voice specifics."
+    ],
+    "dimensions": [
+      {
+        "name": "Role fit",
+        "score": 65,
+        "note": "Resume shows 1yr AI platform + LLM experience (Claude, Firebase, Cloud Run, n8n), but lacks demonstrated full-stack web app shipping, voice AI, semantic search (Pinecone), or LangChain/Deepgram specifics; bootcamp + AI-assisted dev is foundation but not production enterprise voice AI track record."
+      },
+      {
+        "name": "Comp",
+        "score": 85,
+        "note": "$1,800 fixed for 6 weeks (~$75/hr implied) meets min_fixed_budget ($500) and hourly floor ($50); fair for scope but tight timeline demands efficiency."
+      },
+      {
+        "name": "Engagement",
+        "score": 90,
+        "note": "Fixed-price 6-week project, remote, no fixed clock hours, no time tracker mentioned—aligns with all scheduling filters (no_fixed_schedule, no_time_tracker, no_onsite)."
+      },
+      {
+        "name": "Client",
+        "score": 50,
+        "note": "Payment verified and Canada-based are positive; 0 rating and $0 spent indicate brand-new client with no hire history—unable to assess reliability beyond verification badge."
+      },
+      {
+        "name": "Competition",
+        "score": 85,
+        "note": "Proposals already not disclosed; assuming reasonable volume for an intermediate 6-week AI project; no data visible to confirm under max_proposals_already (30)."
+      },
+      {
+        "name": "Growth alignment",
+        "score": 78,
+        "note": "Enterprise voice AI + LLM/Claude/LangChain + production deployment directly advances stated AI platform focus and full-stack shipping goals; exposure to Pinecone and Deepgram fills gaps in resume."
+      },
+      {
+        "name": "Red flags",
+        "score": 80,
+        "note": "No excluded keywords hit; includes matched (AI, Claude, LLM, full-stack); main concern is resume shows 1yr AI exp vs. 6-week ship of production voice system—execution risk if freelancer unfamiliar with Deepgram/ElevenLabs/Pinecone specifics, but not a disqualifier."
+      }
+    ],
+    "filter_violations": [],
+    "is_hourly": false,
+    "hourly_low": null,
+    "hourly_high": null,
+    "fixed_budget": 1800,
+    "proposals_already": null
+  }
+]

@@ -1,0 +1,14 @@
+.git
+.next
+node_modules
+.env*
+!.env.example
+README.md
+.vscode
+.claude
+.idea
+*.log
+.DS_Store
+resume
+n8n
+supabase

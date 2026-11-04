@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>JobScout</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <span class="star">★</span>
+    <strong>JobScout</strong>
+  </header>
+
+  <p class="hint">Press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd> on any Upwork job page.</p>
+
+  <form id="token-form">
+    <label>
+      <span>Extension token</span>
+      <input type="password" id="token" placeholder="jbsk_…" autocomplete="off" spellcheck="false" />
+    </label>
+    <label>
+      <span>API base</span>
+      <input type="url" id="api-base" placeholder="https://jobscout-wnwafxvfia-uw.a.run.app" />
+    </label>
+    <button type="submit">Save</button>
+    <p id="status" class="status" hidden></p>
+  </form>
+
+  <p class="footnote">Generate a token at <span id="origin-link">JobScout → Settings → Browser extension</span>.</p>
+
+  <script src="popup.js"></script>
+</body>
+</html>

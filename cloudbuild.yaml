@@ -1,0 +1,77 @@
+# Cloud Build → Artifact Registry → Cloud Run pipeline.
+# Trigger with: gcloud builds submit --config cloudbuild.yaml \
+#   --substitutions=_VAPID_PUB=...,_FB_API_KEY=...,_FB_AUTH_DOMAIN=...,_FB_PROJECT_ID=...,_FB_APP_ID=... .
+#
+# All NEXT_PUBLIC_* vars must be passed as substitutions so they're baked
+# into the client JS bundle at build time AND set as runtime env (for
+# server-rendered pages).
+
+substitutions:
+  _REGION: us-west1
+  _SERVICE: jobscout
+  _VAPID_PUB: ""
+  _FB_API_KEY: ""
+  _FB_AUTH_DOMAIN: ""
+  _FB_PROJECT_ID: ""
+  _FB_APP_ID: ""
+  _STRIPE_PUB: ""   # NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY — needed for Embedded Checkout client SDK
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --build-arg
+      - NEXT_PUBLIC_VAPID_PUBLIC_KEY=${_VAPID_PUB}
+      - --build-arg
+      - NEXT_PUBLIC_FIREBASE_API_KEY=${_FB_API_KEY}
+      - --build-arg
+      - NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${_FB_AUTH_DOMAIN}
+      - --build-arg
+      - NEXT_PUBLIC_FIREBASE_PROJECT_ID=${_FB_PROJECT_ID}
+      - --build-arg
+      - NEXT_PUBLIC_FIREBASE_APP_ID=${_FB_APP_ID}
+      - --build-arg
+      - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${_STRIPE_PUB}
+      - -t
+      - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/jobscout/jobscout:$BUILD_ID
+      - -t
+      - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/jobscout/jobscout:latest
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - --all-tags
+      - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/jobscout/jobscout
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - ${_SERVICE}
+      - --image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/jobscout/jobscout:$BUILD_ID
+      - --region=${_REGION}
+      - --platform=managed
+      - --allow-unauthenticated
+      - --memory=512Mi
+      - --cpu=1
+      # min-instances=1 keeps one warm instance (no cold-start tax on /feed).
+      # Was being silently reset to 0 on every cloudbuild deploy — pinned here.
+      - --min-instances=1
+      - --max-instances=4
+      # 300s request timeout: several routes make synchronous Claude calls
+      # (tailor-resume, cover-letter, comp lookup, negotiate) + the autopilot
+      # cron prepares multiple applications per run. 60s was too tight and 504'd.
+      - --timeout=300s
+      # NOTE: --update-env-vars is additive (merges with existing). Using
+      # --set-env-vars instead would WIPE every other var (ANTHROPIC_API_KEY,
+      # JSEARCH_RAPIDAPI_KEY, SMTP_*, CRON_TOKEN, etc.) on every deploy.
+      - --update-env-vars=GOOGLE_CLOUD_PROJECT=${PROJECT_ID},NEXT_PUBLIC_VAPID_PUBLIC_KEY=${_VAPID_PUB},NEXT_PUBLIC_FIREBASE_API_KEY=${_FB_API_KEY},NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${_FB_AUTH_DOMAIN},NEXT_PUBLIC_FIREBASE_PROJECT_ID=${_FB_PROJECT_ID},NEXT_PUBLIC_FIREBASE_APP_ID=${_FB_APP_ID},NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${_STRIPE_PUB}
+
+images:
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/jobscout/jobscout:$BUILD_ID
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/jobscout/jobscout:latest

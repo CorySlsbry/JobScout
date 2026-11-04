@@ -1,0 +1,676 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   JobScout design tokens — ported from SpaOwner (Aurora default)
+   -----------------------------------------------------------------------
+   Three themes: Aurora (default, deep navy + rainbow rim), Stardust
+   (warm pastel), Blotato (operator dark). Themes resolve the same token
+   vocabulary so component primitives render identically.
+
+   Legacy aliases (--bg, --fg, --accent, etc.) point at the new semantic
+   tokens so existing JobScout components keep working until we audit them.
+   ========================================================================= */
+
+@theme {
+  /* Color roles --------------------------------------------------------- */
+  --color-bg: var(--c-bg);
+  --color-bg-elev: var(--c-bg-elev);
+  --color-bg-sunken: var(--c-bg-sunken);
+  --color-fg: var(--c-fg);
+  --color-fg-muted: var(--c-fg-muted);
+  --color-fg-faint: var(--c-fg-faint);
+  --color-accent: var(--c-accent);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-accent-ink: var(--c-accent-ink);
+  --color-success: var(--c-success);
+  --color-warning: var(--c-warning);
+  --color-danger: var(--c-danger);
+  --color-border: var(--c-border);
+  --color-border-strong: var(--c-border-strong);
+
+  --color-peach: var(--c-peach);
+  --color-sky: var(--c-sky);
+  --color-blush: var(--c-blush);
+
+  --radius-card: var(--r-card);
+  --radius-input: var(--r-input);
+  --radius-button: var(--r-button);
+
+  --shadow-card: var(--s-card);
+  --shadow-elev: var(--s-elev);
+
+  --font-display: var(--f-display);
+  --font-body: var(--f-body);
+  --font-mono: var(--f-mono);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-snap: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --text-display: var(--t-display);
+  --text-h1: var(--t-h1);
+  --text-h2: var(--t-h2);
+  --text-h3: var(--t-h3);
+  --text-body: var(--t-body);
+  --text-small: var(--t-small);
+  --text-tiny: var(--t-tiny);
+  --text-tile: var(--t-tile);
+}
+
+/* -------------------------------------------------------------------------
+   AURORA theme (default) — deep navy + rainbow rim, period-tracker /
+   iOS-Contacts vibe. Backlit purple/cyan/gold glow on cards.
+   ------------------------------------------------------------------------- */
+:root,
+[data-theme="aurora"] {
+  --c-bg: #0b0a1f;
+  --c-bg-elev: #14132e;
+  --c-bg-sunken: #06051a;
+  --c-fg: #f8f4ff;
+  --c-fg-muted: #b9b3d9;
+  --c-fg-faint: #6f6890;
+  --c-accent: #c084fc;
+  --c-accent-soft: #2a1f4a;
+  --c-accent-ink: #0b0a1f;
+  /* Secondary accents — kept inside the blue/indigo/violet family so nothing
+     reads as "rainbow". peach + blush were warm (red/pink); now cool. */
+  --c-peach: #818cf8;
+  --c-sky: #38bdf8;
+  --c-blush: #c4b5fd;
+  --c-success: #34d399;
+  --c-warning: #fbbf24;
+  --c-danger: #fb7185;
+  --c-border: #2a2752;
+  --c-border-strong: #3d3870;
+
+  --r-card: 1.25rem;
+  --r-input: 0.875rem;
+  --r-button: 999px;
+
+  --s-card: 0 1px 0 0 rgba(255, 255, 255, 0.06),
+            0 24px 60px -20px rgba(120, 84, 252, 0.35);
+  --s-elev: 0 1px 0 0 rgba(255, 255, 255, 0.08),
+            0 36px 80px -24px rgba(192, 132, 252, 0.45);
+
+  --f-display: "Fraunces", "Iowan Old Style", "Georgia", serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Menlo", monospace;
+
+  --motion-fast: 180ms;
+  --motion-base: 280ms;
+  --motion-slow: 460ms;
+
+  --t-display: clamp(2.5rem, 5vw, 4rem);
+  --t-h1: 2rem;
+  --t-h2: 1.5rem;
+  --t-h3: 1.125rem;
+  --t-body: 0.9375rem;
+  --t-small: 0.8125rem;
+  --t-tiny: 0.6875rem;
+  --t-tile: 2.5rem;
+
+  /* Cool brand ramp — blue → indigo → violet → purple. One cohesive
+     family, no warm stops. This single token drives every button,
+     gradient text, ring, and glow in the app. */
+  --g-brand: linear-gradient(120deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
+  --g-brand-soft: linear-gradient(120deg, rgba(56, 189, 248, 0.18) 0%, rgba(99, 102, 241, 0.18) 50%, rgba(168, 85, 247, 0.22) 100%);
+  --g-brand-text: linear-gradient(120deg, #7dd3fc 0%, #818cf8 50%, #c084fc 100%);
+  --g-accent-ring: conic-gradient(from 0deg at 50% 50%,
+    #38bdf8 0deg, #6366f1 120deg, #a855f7 240deg, #38bdf8 360deg);
+  --g-tile-shimmer: linear-gradient(135deg, rgba(168, 85, 247, 0.16), rgba(99, 102, 241, 0.12), rgba(56, 189, 248, 0.10));
+  --g-button-shine: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+
+  --gradient-chart: linear-gradient(90deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
+  --gradient-hero: radial-gradient(120% 80% at 50% 0%, #1a1640 0%, #0b0a1f 60%);
+  --gradient-tile-glow: linear-gradient(135deg, rgba(168, 132, 252, 0.18) 0%, rgba(168, 132, 252, 0) 60%);
+
+  /* Legacy JobScout aliases — keep existing components working */
+  --bg: var(--c-bg);
+  --bg-elev: var(--c-bg-elev);
+  --bg-elev-2: var(--c-border-strong);
+  --fg: var(--c-fg);
+  --muted: var(--c-fg-muted);
+  --border: var(--c-border);
+  --border-soft: var(--c-border);
+  --accent: var(--c-sky);
+  --accent-2: var(--c-accent);
+  --accent-soft: rgba(56, 189, 248, 0.12);
+  --accent-2-soft: rgba(192, 132, 252, 0.16);
+  --accent-glow: rgba(129, 140, 248, 0.45);
+  --good: var(--c-success);
+  --good-soft: rgba(52, 211, 153, 0.12);
+  --warn: var(--c-warning);
+  --warn-soft: rgba(251, 191, 36, 0.12);
+  --bad: var(--c-danger);
+  --bad-soft: rgba(251, 113, 133, 0.14);
+  --grad-cosmic: var(--g-brand);
+  /* was warm orange/yellow/red — now a cool indigo→violet→blue sweep */
+  --grad-canyon: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #38bdf8 100%);
+  --grad-aurora: var(--gradient-hero);
+  --shadow-glow: 0 0 40px rgba(129, 140, 248, 0.22);
+}
+
+[data-theme="aurora"] {
+  color-scheme: dark;
+}
+
+/* Aurora star field — sprinkled across the bg via a pseudo-element */
+[data-theme="aurora"] body::before,
+:root body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 73% 32%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1.5px 1.5px at 38% 64%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 88% 78%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 22% 88%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1.5px 1.5px at 58% 12%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 4% 48%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 92% 42%, rgba(255,255,255,0.4), transparent);
+  z-index: 0;
+  opacity: 0.8;
+}
+
+/* -------------------------------------------------------------------------
+   STARDUST theme (light, warm pastel — for marketing / landing if used)
+   ------------------------------------------------------------------------- */
+[data-theme="stardust"] {
+  --c-bg: #fbf7f1;
+  --c-bg-elev: #ffffff;
+  --c-bg-sunken: #f3ecdf;
+  --c-fg: #241b2c;
+  --c-fg-muted: #6b6175;
+  --c-fg-faint: #968b9f;
+  --c-accent: #9b7bd8;
+  --c-accent-soft: #e8dff7;
+  --c-accent-ink: #ffffff;
+  --c-peach: #f5b89c;
+  --c-sky: #a6cfe5;
+  --c-blush: #f4c9c9;
+  --c-success: #5d9b7a;
+  --c-warning: #d9923b;
+  --c-danger: #c5605e;
+  --c-border: #e8dfcf;
+  --c-border-strong: #d4c7af;
+  --r-card: 1.5rem;
+  --r-input: 0.75rem;
+  --r-button: 999px;
+  --s-card: 0 6px 32px -12px rgba(36, 27, 44, 0.12);
+  --s-elev: 0 20px 60px -20px rgba(36, 27, 44, 0.18);
+  --f-display: "Fraunces", "Iowan Old Style", "Georgia", serif;
+  --f-body: "Inter", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+  --g-brand: linear-gradient(120deg, #7aa7e8 0%, #8b7bd8 50%, #b89be8 100%);
+  --g-brand-text: linear-gradient(120deg, #4a8fbd 0%, #7b5cc8 50%, #9b6cc8 100%);
+  --gradient-tile-glow: linear-gradient(135deg, rgba(155, 123, 216, 0.08) 0%, rgba(155, 123, 216, 0) 60%);
+  color-scheme: light;
+}
+
+/* -------------------------------------------------------------------------
+   Base layer
+   ------------------------------------------------------------------------- */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--c-bg);
+    color: var(--c-fg);
+    font-family: var(--f-body);
+    font-size: var(--t-body);
+    line-height: 1.6;
+    min-height: 100vh;
+    font-variant-numeric: tabular-nums;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--f-display);
+    color: var(--c-fg);
+    line-height: 1.2;
+  }
+  h1 { font-size: var(--t-h1); }
+  h2 { font-size: var(--t-h2); }
+  h3 { font-size: var(--t-h3); }
+  ::selection { background: var(--c-accent-soft); color: var(--c-fg); }
+  :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 2px;
+    border-radius: var(--r-input);
+  }
+  /* prevent iOS zoom on input focus */
+  input, select, textarea { font-size: 16px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Component layer
+   ------------------------------------------------------------------------- */
+@layer components {
+  /* Glass card — translucent with backdrop blur, the signature surface */
+  .glass-card {
+    background: color-mix(in srgb, var(--c-bg-elev) 70%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid color-mix(in srgb, var(--c-fg) 8%, transparent);
+    border-radius: var(--r-card);
+    box-shadow: var(--s-elev);
+  }
+
+  /* Legacy alias — keeps `.glass` usages working */
+  .glass {
+    background: color-mix(in srgb, var(--c-bg-elev) 70%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid color-mix(in srgb, var(--c-fg) 8%, transparent);
+    border-radius: var(--r-card);
+    box-shadow: var(--s-card);
+  }
+
+  .card-base {
+    background: var(--c-bg-elev);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-card);
+    box-shadow: var(--s-card);
+  }
+
+  /* Premium gradient button */
+  .btn-premium {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--g-brand);
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    border: none;
+    border-radius: var(--r-button);
+    cursor: pointer;
+    min-height: 44px;
+    box-shadow: 0 6px 24px -8px rgba(99, 102, 241, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition: background-position 600ms var(--ease-out-soft),
+                transform 200ms var(--ease-out-soft),
+                box-shadow 200ms var(--ease-out-soft);
+  }
+  .btn-premium:hover {
+    background-position: 100% 50%;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px -8px rgba(99, 102, 241, 0.55),
+                inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+  .btn-premium:active { transform: translateY(0); }
+  .btn-premium::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--g-button-shine);
+    pointer-events: none;
+  }
+
+  /* Outline gradient button */
+  .btn-premium-outline {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: var(--c-fg);
+    background: var(--c-bg-elev);
+    border-radius: var(--r-button);
+    cursor: pointer;
+    min-height: 44px;
+    transition: transform 200ms var(--ease-out-soft);
+    background-clip: padding-box;
+    border: 1px solid transparent;
+  }
+  .btn-premium-outline::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--g-brand);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .btn-premium-outline:hover { transform: translateY(-1px); }
+
+  /* Legacy cosmic button — kept so existing JSX works, but visually unified
+     with btn-premium since the Aurora rainbow is our brand now. */
+  .btn-cosmic {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    color: #ffffff;
+    background: var(--g-brand);
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    border: none;
+    border-radius: var(--r-button);
+    cursor: pointer;
+    font-weight: 600;
+    min-height: 44px;
+    box-shadow: 0 6px 24px -8px rgba(99, 102, 241, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition: background-position 600ms var(--ease-out-soft),
+                transform 200ms var(--ease-out-soft);
+  }
+  .btn-cosmic:hover {
+    background-position: 100% 50%;
+    transform: translateY(-1px);
+  }
+  .btn-cosmic:active { transform: translateY(0); }
+
+  /* Gradient text — for hero headlines */
+  .text-gradient,
+  .grad-text {
+    background: var(--g-brand-text);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-pan 18s ease-in-out infinite alternate;
+  }
+  @keyframes gradient-pan {
+    from { background-position: 0% 50%; }
+    to   { background-position: 100% 50%; }
+  }
+
+  /* Soft hero surface — animated multi-stop wash */
+  .hero-surface,
+  .bg-aurora {
+    position: relative;
+    background: var(--c-bg);
+    overflow: hidden;
+  }
+  .hero-surface::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    z-index: 0;
+    background:
+      radial-gradient(40% 30% at 18% 28%, rgba(168, 85, 247, 0.45), transparent 70%),
+      radial-gradient(35% 25% at 78% 18%, rgba(56, 189, 248, 0.42), transparent 70%),
+      radial-gradient(30% 25% at 50% 80%, rgba(99, 102, 241, 0.40), transparent 70%),
+      radial-gradient(25% 20% at 92% 72%, rgba(139, 92, 246, 0.42), transparent 70%);
+    filter: blur(40px);
+    opacity: 0.9;
+    animation: gradient-drift 24s ease-in-out infinite alternate;
+  }
+  .hero-surface > * { position: relative; z-index: 1; }
+  @keyframes gradient-drift {
+    0%   { transform: translate3d(-2%, -2%, 0) rotate(0deg); }
+    100% { transform: translate3d( 2%,  3%, 0) rotate(8deg); }
+  }
+
+  /* Accent halo — radial glow behind a key element */
+  .accent-halo {
+    position: relative;
+  }
+  .accent-halo::before {
+    content: "";
+    position: absolute;
+    inset: -30% -20%;
+    z-index: -1;
+    background: var(--g-brand);
+    filter: blur(60px);
+    opacity: 0.35;
+    border-radius: 50%;
+  }
+
+  /* Conic ring */
+  .conic-ring {
+    position: relative;
+    border-radius: 50%;
+    padding: 2px;
+    background: var(--g-accent-ring);
+    animation: conic-spin 12s linear infinite;
+  }
+  @keyframes conic-spin { to { transform: rotate(360deg); } }
+  .conic-ring > * {
+    border-radius: 50%;
+    background: var(--c-bg);
+  }
+
+  /* Shimmer tile */
+  .tile-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .tile-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--g-tile-shimmer);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* Glow halo behind a button */
+  .glow-halo {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+  }
+  .glow-halo::before {
+    content: "";
+    position: absolute;
+    inset: -45% -25%;
+    z-index: -1;
+    background:
+      radial-gradient(45% 60% at 20% 50%, rgba(168, 85, 247, 0.55), transparent 70%),
+      radial-gradient(45% 60% at 80% 50%, rgba(56, 189, 248, 0.52), transparent 70%),
+      radial-gradient(40% 60% at 50% 20%, rgba(99, 102, 241, 0.48), transparent 70%),
+      radial-gradient(40% 60% at 50% 80%, rgba(139, 92, 246, 0.52), transparent 70%);
+    filter: blur(32px);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: glow-pulse 8s ease-in-out infinite alternate;
+  }
+  @keyframes glow-pulse {
+    from { opacity: 0.7; transform: scale(0.95); }
+    to   { opacity: 1;   transform: scale(1.08); }
+  }
+
+  /* Tabular numeric tile */
+  .num-tile {
+    font-family: var(--f-mono);
+    font-size: var(--t-tile);
+    font-weight: 500;
+    line-height: 1;
+    font-variant-numeric: tabular-nums slashed-zero;
+    letter-spacing: -0.01em;
+    color: var(--c-fg);
+  }
+
+  /* Form input — consistent shape for input/select/textarea across the app */
+  .form-input {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    background: color-mix(in srgb, var(--c-bg-sunken) 80%, transparent);
+    color: var(--c-fg);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-input);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    transition: border-color 180ms var(--ease-out-soft), box-shadow 180ms var(--ease-out-soft);
+    outline: none;
+  }
+  .form-input:focus {
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-accent) 18%, transparent);
+  }
+  .form-input::placeholder { color: var(--c-fg-faint); }
+}
+
+/* -------------------------------------------------------------------------
+   Utility layer
+   ------------------------------------------------------------------------- */
+@layer utilities {
+  .font-display { font-family: var(--f-display); }
+  .font-body    { font-family: var(--f-body); }
+  .font-mono    { font-family: var(--f-mono); }
+  .tabular { font-variant-numeric: tabular-nums; }
+  .motion-fast { transition-duration: var(--motion-fast); }
+  .motion-base { transition-duration: var(--motion-base); }
+  .ease-soft { transition-timing-function: var(--ease-out-soft); }
+
+  /* iOS safe-area */
+  .pt-safe { padding-top: max(env(safe-area-inset-top), 0px); }
+  .pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
+  .pl-safe { padding-left: env(safe-area-inset-left); }
+  .pr-safe { padding-right: env(safe-area-inset-right); }
+  .tap-target { min-height: 44px; min-width: 44px; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
+
+/* iOS dvh */
+@supports (height: 100dvh) {
+  html, body { min-height: 100dvh; }
+}
+
+/* -------------------------------------------------------------------------
+   Glass toggle — flatten glassmorphism for low-end devices via data-glass
+   ------------------------------------------------------------------------- */
+[data-glass="off"] .glass-card,
+[data-glass="off"] .glass {
+  background: var(--c-bg-elev);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+[data-glass="off"] .hero-surface::before { display: none; }
+[data-glass="off"] [data-theme="aurora"] body::before { opacity: 0; }
+[data-glass="off"] .tile-shimmer::after { opacity: 0.2; }
+
+/* -------------------------------------------------------------------------
+   Autofill — match Aurora dark surfaces (was breaking on dark theme)
+   ------------------------------------------------------------------------- */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--c-bg-elev) inset !important;
+  -webkit-text-fill-color: var(--c-fg) !important;
+  caret-color: var(--c-fg);
+  transition: background-color 9999s ease-in-out 0s, color 9999s ease-in-out 0s;
+  font-family: inherit !important;
+}
+
+/* Desktop scrollbar polish */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--c-accent); }
+}
+
+/* -------------------------------------------------------------------------
+   Pulse dot (live badge)
+   ------------------------------------------------------------------------- */
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+  50%      { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
+}
+.live-dot {
+  width: 8px; height: 8px; border-radius: 999px;
+  background: var(--c-success);
+  animation: pulse-dot 2s ease-out infinite;
+}
+
+/* -------------------------------------------------------------------------
+   Markdown output (resume / cover-letter modals) — JobScout-specific
+   ------------------------------------------------------------------------- */
+.md-output {
+  font-family: var(--f-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--c-fg);
+}
+.md-output h1 {
+  font-family: var(--f-display);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px 0;
+  color: var(--c-fg);
+}
+.md-output h2 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c-accent);
+  margin: 22px 0 6px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--c-border);
+}
+.md-output h3 {
+  font-family: var(--f-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 14px 0 2px 0;
+  color: var(--c-fg);
+}
+.md-output h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0 2px 0;
+}
+.md-output p { margin: 0 0 10px 0; }
+.md-output em { color: var(--c-fg-muted); font-style: italic; font-size: 12.5px; }
+.md-output strong { color: var(--c-fg); font-weight: 700; }
+.md-output ul { list-style: none; padding: 0; margin: 4px 0 12px 0; }
+.md-output ul li {
+  padding-left: 16px;
+  position: relative;
+  margin: 4px 0;
+}
+.md-output ul li::before {
+  content: "•";
+  color: var(--c-peach);
+  position: absolute;
+  left: 4px;
+  top: 0;
+}
+.md-output ol { padding-left: 22px; margin: 4px 0 12px 0; }
+.md-output ol li { margin: 4px 0; }
+.md-output a {
+  color: var(--c-accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(192, 132, 252, 0.4);
+}
+.md-output hr {
+  border: 0;
+  border-top: 1px solid var(--c-border);
+  margin: 14px 0;
+}
+.md-output code {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  background: var(--c-bg-sunken);
+  padding: 1px 5px;
+  border-radius: 4px;
+}

@@ -1,0 +1,43 @@
+{
+  "name": "jobscout",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.95.1",
+    "@stripe/react-stripe-js": "^6.4.0",
+    "@stripe/stripe-js": "^9.6.0",
+    "docx": "^9.6.1",
+    "firebase": "^12.13.0",
+    "firebase-admin": "^12.7.0",
+    "jspdf": "^4.2.1",
+    "lucide-react": "^0.460.0",
+    "mammoth": "^1.12.0",
+    "marked": "^18.0.3",
+    "next": "16.2.6",
+    "nodemailer": "^8.0.7",
+    "pdfjs-dist": "^5.7.284",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "stripe": "^22.1.1",
+    "web-push": "^3.6.7",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/nodemailer": "^8.0.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/web-push": "^3.6.4",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

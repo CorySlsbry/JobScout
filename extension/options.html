@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>JobScout — Options</title>
+  <link rel="stylesheet" href="popup.css" />
+  <style>
+    body { width: 480px; }
+    ol { padding-left: 20px; line-height: 1.6; }
+    code { background: #1f2937; padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <header><span class="star">★</span><strong>JobScout — first-time setup</strong></header>
+
+  <ol>
+    <li>Sign in to JobScout at the URL you deployed (e.g. <code>https://jobscout-wnwafxvfia-uw.a.run.app</code>).</li>
+    <li>Open <code>Settings → Browser extension</code> and click <strong>Generate token</strong>.</li>
+    <li>Copy the <code>jbsk_…</code> token — it's only shown once.</li>
+    <li>Paste it below and click Save.</li>
+  </ol>
+
+  <form id="token-form">
+    <label><span>Extension token</span>
+      <input type="password" id="token" placeholder="jbsk_…" autocomplete="off" spellcheck="false" />
+    </label>
+    <label><span>API base</span>
+      <input type="url" id="api-base" placeholder="https://jobscout-wnwafxvfia-uw.a.run.app" />
+    </label>
+    <button type="submit">Save</button>
+    <p id="status" class="status" hidden></p>
+  </form>
+
+  <p class="footnote">Then visit any Upwork job page and press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd>.</p>
+
+  <script src="popup.js"></script>
+</body>
+</html>

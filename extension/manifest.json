@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "JobScout — Upwork Bidder",
+  "version": "0.1.0",
+  "description": "AI-score Upwork jobs and draft proposals against your JobScout base resume. Admin-only.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://www.upwork.com/*",
+    "https://*.upwork.com/*"
+  ],
+  "action": {
+    "default_title": "JobScout",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.upwork.com/jobs/*",
+        "https://www.upwork.com/nx/jobs/*",
+        "https://www.upwork.com/nx/s/job-details-viewer/*",
+        "https://www.upwork.com/nx/proposals/job/*",
+        "https://www.upwork.com/ab/proposals/job/*",
+        "https://www.upwork.com/nx/search/jobs/*",
+        "https://www.upwork.com/nx/find-work/*"
+      ],
+      "js": ["content-scripts/upwork.js"],
+      "css": ["content-scripts/overlay.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "score-current-job": {
+      "suggested_key": { "default": "Alt+Shift+J" },
+      "description": "Score current job, OR bulk-score all visible jobs on a search page"
+    }
+  }
+}

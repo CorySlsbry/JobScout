@@ -1,0 +1,56 @@
+{
+  "name": "JobScout — sync every 2h",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "hours", "hoursInterval": 2 }
+          ]
+        }
+      },
+      "name": "Every 2 hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{$env.JOBSCOUT_BASE_URL}}/api/cron/sync",
+        "options": {
+          "qs": {
+            "token": "={{$env.JOBSCOUT_CRON_TOKEN}}"
+          }
+        }
+      },
+      "name": "Hit /api/cron/sync",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [],
+          "number": [
+            {
+              "value1": "={{$json.inserted}}",
+              "operation": "larger",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "name": "Any new jobs?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [800, 300]
+    }
+  ],
+  "connections": {
+    "Every 2 hours": { "main": [[{ "node": "Hit /api/cron/sync", "type": "main", "index": 0 }]] },
+    "Hit /api/cron/sync": { "main": [[{ "node": "Any new jobs?", "type": "main", "index": 0 }]] }
+  },
+  "settings": {},
+  "tags": ["jobscout", "cron"]
+}
